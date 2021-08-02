@@ -28,6 +28,7 @@ Docker_Config(){
   chmod 777 /usr/local/bin/docker-compose;
 
   echo "===this is Cutting line==="
+<<<<<<< HEAD:docker_auto_instll.sh
   systemctl restart docker; docker -v; docker-compose -v
   echo "docker install succeed ;)"
 }
@@ -49,3 +50,17 @@ case "${LikeOS}" in
     ;;
 esac
 echo "OS Temporarily Unsupported"; break
+=======
+  systemctl start docker; docker -v; docker-compose -v
+  echo "docker install succeed ;)"
+}
+
+${PM} -y update
+${PM} -y remove docker docker-engine docker.io containerd runc 
+${PM} -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/${OS}/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu ${Code_Name} stable"
+${PM} -y update
+${PM} -y install docker-ce docker-ce-cli containerd.io
+Docker_Config
+>>>>>>> dev:docker-auto-instll.sh
