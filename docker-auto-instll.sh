@@ -30,7 +30,7 @@ Docker_Config(){
   echo "===this is Cutting line==="
 
   systemctl restart docker; docker -v; docker-compose -v
-  echo "docker install succeed ;)"
+  echo ">>>>>>>>> docker install succeed ;) <<<<<<<<<"
 }
 
 
@@ -49,4 +49,3 @@ case "${LikeOS}" in
     Docker_Config
     ;;
 esac
-echo "OS Temporarily Unsupported"; break
