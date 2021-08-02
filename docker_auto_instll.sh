@@ -28,23 +28,15 @@ Docker_Config(){
   chmod 777 /usr/local/bin/docker-compose;
 
   echo "===this is Cutting line==="
-  docker -v; docker-compose -v
+  systemctl start docker; docker -v; docker-compose -v
   echo "docker install succeed ;)"
 }
 
-
-case "${LikeOS}" in
-  "CentOS")
-    echo "centos 支持"
-    ;;
-  "Ubuntu")
-    apt-get -y update
-    apt-get -y remove docker docker-engine docker.io containerd runc 
-    apt-get -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu ${Code_Name} stable"
-    apt-get -y update
-    apt-get -y install docker-ce docker-ce-cli containerd.io
-    Docker_Config
-    ;;
-esac
+${PM} -y update
+${PM} -y remove docker docker-engine docker.io containerd runc 
+${PM} -y install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+curl -fsSL https://download.docker.com/linux/${OS}/gpg | sudo apt-key add -
+add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu ${Code_Name} stable"
+${PM} -y update
+${PM} -y install docker-ce docker-ce-cli containerd.io
+Docker_Config
