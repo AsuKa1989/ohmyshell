@@ -10,6 +10,7 @@ pushd $ohmyshell_dir > /dev/null
 . ./include/check_os.sh
 
 ${PM} -y install \
+zsh \
 wget \
 net-tools \
 lrzsz \
